@@ -25,10 +25,33 @@ class TransformerPlayer(Player):
         self.max_new_tokens = 100
 
     def _build_prompt(self, fen: str) -> str:
-      return f"""You are a chess engine.\n\nYour task is to output the BEST LEGAL MOVE for the given chess position.\n\nSTRICT OUTPUT RULES:\n- Output EXACTLY ONE move\n- UCI format ONLY (examples: e2e4, g1f3, e7e8q)\n- NO explanations:\n- NO punctuation:\n- NO extra text:\n\nExamples:\n\nFEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKB1R w KQkq - 0 1\nMove: e2e4\n
-FEN: r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3\nMove: f1b5\n
-FEN: rnbqkb1r/pppp1ppp/5n2/4p3/1P6/5NP1/P1PPPP1P/RNBQKB1R b KQkq - 0 3\nMove: e5e4\n
-Now evaluate this position:\n\nFEN: {fen}\nMove:"""
+      return f"""You are a chess engine.
+      
+      Your task is to output the BEST LEGAL MOVE for the given chess position.
+      
+      STRICT OUTPUT RULES:
+      
+      - Output EXACTLY ONE move
+      - UCI format ONLY (examples: e2e4, g1f3, e7e8q)
+      - NO explanations:
+      - NO punctuation:
+      - NO extra text:
+      
+      Examples:
+      
+      FEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKB1R w KQkq - 0 1
+      Move: e2e4
+
+      FEN: r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3
+      Move: f1b5
+      
+      FEN: rnbqkb1r/pppp1ppp/5n2/4p3/1P6/5NP1/P1PPPP1P/RNBQKB1R b KQkq - 0 3
+      Move: e5e4
+      
+      Now evaluate this position:
+      
+      FEN: {fen}
+      Move:"""
 
     def _extract_move(self, text: str) -> Optional[str]:
         print("Extracted move:", text[:4])
